@@ -1,0 +1,13 @@
+services:
+  api:
+    build: .
+    env_file:
+      - path: ./.env.local
+        required: false
+      - path: ./.env
+        required: false
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    restart: unless-stopped

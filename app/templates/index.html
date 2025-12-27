@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Digital Frame Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="/static/assets/icons/favicon/dobby+ray.png">
+    <link rel="stylesheet" href="/static/css/style.css?v2">
+  </head>
+  <body>
+    <main id="app" class="container">
+      <div class="left-content">
+        <section class="card card-weather">
+          <div class="weather-top-grid">
+            <div class="weather-left">
+              <div class="weather-main-row">
+                <img id="weather-icon" alt="weather" class="weather-icon" />
+                <div class="weather-info">
+                  <div id="weather-city" class="weather-city"></div>
+                  <div id="weather-temp" class="weather-temp">--°</div>
+                  <div id="weather-feels-like" class="weather-feels-like">Feels like --°</div>
+                </div>
+              </div>
+              <div class="weather-details-row">
+                <div class="details-item">
+                  <img src="/static/assets/icons/weather/weather-sunrise-icon.png" alt="sunrise" class="details-icon" />
+                  <span id="weather-sunrise" class="details-time">--:--</span>
+                </div>
+                <div class="details-item">
+                  <img src="/static/assets/icons/weather/wind-speed.svg" alt="wind" class="details-icon" />
+                  <span id="weather-wind-speed" class="details-time">--</span>
+                </div>
+                <div class="details-item">
+                  <img src="/static/assets/icons/weather/rain-precipitation.svg" alt="rain" class="details-icon" />
+                  <span id="weather-rain-precipitation" class="details-time">--</span>
+                </div>
+                <div class="details-item">
+                  <img src="/static/assets/icons/weather/weather-sunset-icon.png" alt="sunset" class="details-icon" />
+                  <span id="weather-sunset" class="details-time">--:--</span>
+                </div>
+              </div>
+            </div>
+            <div class="weather-forecast">
+              <div class="forecast-row">
+                <div class="forecast-item">
+                  <img class="forecast-icon" alt="icon" />
+                  <div class="forecast-mid">
+                    <div class="forecast-day">--</div>
+                    <div class="forecast-desc">--</div>
+                  </div>
+                  <div class="forecast-temps">
+                    <div class="forecast-minmax">--° / --°</div>
+                  </div>
+                </div>
+                <div class="forecast-item">
+                  <img class="forecast-icon" alt="icon" />
+                  <div class="forecast-mid">
+                    <div class="forecast-day">--</div>
+                    <div class="forecast-desc">--</div>
+                  </div>
+                  <div class="forecast-temps">
+                    <div class="forecast-minmax">--° / --°</div>
+                  </div>
+                </div>
+                <div class="forecast-item">
+                  <img class="forecast-icon" alt="icon" />
+                  <div class="forecast-mid">
+                    <div class="forecast-day">--</div>
+                    <div class="forecast-desc">--</div>
+                  </div>
+                  <div class="forecast-temps">
+                    <div class="forecast-minmax">--° / --°</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="card card-weather">
+          <div class="weather-top-grid">
+            <div class="weather-left">
+              <div class="weather-main-row">
+                <img id="weather-icon" alt="weather" class="weather-icon" />
+                <div class="weather-info">
+                  <div id="weather-city" class="weather-city"></div>
+                  <div id="weather-temp" class="weather-temp">--°</div>
+                  <div id="weather-feels-like" class="weather-feels-like">Feels like --°</div>
+                </div>
+              </div>
+              <div class="weather-details-row">
+                <div class="details-item">
+                  <img src="/static/assets/icons/weather/weather-sunrise-icon.png" alt="sunrise" class="details-icon" />
+                  <span id="weather-sunrise" class="details-time">--:--</span>
+                </div>
+                <div class="details-item">
+                  <img src="/static/assets/icons/weather/wind-speed.svg" alt="wind" class="details-icon" />
+                  <span id="weather-wind-speed" class="details-time">--</span>
+                </div>
+                <div class="details-item">
+                  <img src="/static/assets/icons/weather/rain-precipitation.svg" alt="rain" class="details-icon" />
+                  <span id="weather-rain-precipitation" class="details-time">--</span>
+                </div>
+                <div class="details-item">
+                  <img src="/static/assets/icons/weather/weather-sunset-icon.png" alt="sunset" class="details-icon" />
+                  <span id="weather-sunset" class="details-time">--:--</span>
+                </div>
+              </div>
+            </div>
+            <div class="weather-forecast">
+              <div class="forecast-row">
+                <div class="forecast-item">
+                  <img class="forecast-icon" alt="icon" />
+                  <div class="forecast-mid">
+                    <div class="forecast-day">--</div>
+                    <div class="forecast-desc">--</div>
+                  </div>
+                  <div class="forecast-temps">
+                    <div class="forecast-minmax">--° / --°</div>
+                  </div>
+                </div>
+                <div class="forecast-item">
+                  <img class="forecast-icon" alt="icon" />
+                  <div class="forecast-mid">
+                    <div class="forecast-day">--</div>
+                    <div class="forecast-desc">--</div>
+                  </div>
+                  <div class="forecast-temps">  
+                    <div class="forecast-minmax">--° / --°</div>
+                  </div>
+                </div>
+                <div class="forecast-item">
+                  <img class="forecast-icon" alt="icon" />
+                  <div class="forecast-mid">
+                    <div class="forecast-day">--</div>
+                    <div class="forecast-desc">--</div>
+                  </div>
+                  <div class="forecast-temps">
+                    <div class="forecast-minmax">--° / --°</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="right-content">
+        <section class="card card-clock">
+          <div class="clock-top">
+            <div id="clock-time" class="time">--:--</div>
+            <div id="clock-date" class="date">----</div>
+          </div>
+          <div id="calendar-entries" class="calendar-entries">
+            <div class="calendar-row">
+              <div class="calendar-item calendar-item-holidays">
+                <div class="calendar-info">
+                  <div class="calendar-title">Untitled</div>
+                  <div class="calendar-date">--:--</div>
+                </div>
+              </div>
+              <div class="calendar-item calendar-item-garbage">
+                <div class="calendar-info">
+                  <div class="calendar-title">Untitled</div>
+                  <div class="calendar-date">--:--</div>
+                </div>
+              </div>
+              <div class="calendar-item calendar-item-personal">
+                <div class="calendar-info">
+                  <div class="calendar-title">Untitled</div>
+                  <div class="calendar-date">--:--</div>
+                  <div class="calendar-time">--:--</div>
+                </div>
+              </div>
+              <div class="calendar-item calendar-item-holidays">
+                <div class="calendar-info">
+                  <div class="calendar-title">Untitled</div>
+                  <div class="calendar-date">--:--</div>
+                </div>
+              </div>
+              <div class="calendar-item calendar-item-garbage">
+                <div class="calendar-info">
+                  <div class="calendar-title">Untitled</div>
+                  <div class="calendar-date">--:--</div>
+                </div>
+              </div>
+              <div class="calendar-item calendar-item-personal">
+                <div class="calendar-info">
+                  <div class="calendar-title">Untitled</div>
+                  <div class="calendar-date">--:--</div>
+                  <div class="calendar-time">--:--</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="card card-crypto">
+          <div class="crypto-content">
+            <img id="crypto-icon" src="" alt="Crypto Icon" class="crypto-icon" />
+            <div id="crypto-name" class="crypto-name">Loading...</div>
+            <div class="crypto-price-container">
+              <span id="crypto-price-indicator" class="crypto-price-indicator"></span>
+              <div id="crypto-price" class="crypto-price">--</div>
+            </div>
+          </div>
+        </section>
+        <section class="card card-crypto-chart">
+          <canvas id="crypto-chart"></canvas>
+        </section>
+      </div>
+    </main>
+
+    <!-- Countdown Card -->
+    <section class="card card-countdown" id="countdown-card">
+      <div class="countdown-content">
+        <div id="countdown-days" class="countdown-days">--</div>
+        <div class="countdown-label">days left</div>
+      </div>
+    </section>
+
+    <!-- Daily Word Card -->
+    <section class="card card-daily-word" id="daily-word-card">
+      <div class="daily-word-content">
+        <div class="daily-word-label">Word of the Day</div>
+        <div id="daily-word" class="daily-word">Loading...</div>
+        <div id="daily-word-definition" class="daily-word-definition">--</div>
+      </div>
+    </section>
+
+    <script>
+      // Pass countdown date to JavaScript
+      window.COUNTDOWN_DATE = "{{ countdown_date }}";
+    </script>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/clock.js"></script>
+    <script src="/static/js/weather.js"></script>
+    <script src="/static/js/calendar.js"></script>
+    <script src="/static/js/crypto.js?v2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/js/crypto-chart.js?v2"></script>
+    <script src="/static/js/countdown.js"></script>
+    <script src="/static/js/daily_word.js"></script>
+  </body>
+</html>
+
+
