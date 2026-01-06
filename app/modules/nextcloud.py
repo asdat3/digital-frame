@@ -1,24 +1,16 @@
-"""
-Nextcloud API Example - List files from a folder
-Uses nc_py_api to connect to Nextcloud and retrieve files
-"""
-
-import os
+from app.config.config import settings
 from nc_py_api import Nextcloud
 
-NEXTCLOUD_URL = "https://storage.asdatindustries.com"
-NEXTCLOUD_USER = "Bot Automatisierung"
-NEXTCLOUD_PASSWORD = "tRW44-QRY9Z-njNsA-s39y8-wGg4C"
 
 def connect_to_nextcloud() -> Nextcloud:
     """Establish connection to Nextcloud instance."""
-    if not NEXTCLOUD_PASSWORD:
-        raise ValueError("NEXTCLOUD_PASSWORD environment variable not set")
+    if not settings.nextcloud_password:
+        raise ValueError("nextcloud_password environment variable not set")
     
     nc = Nextcloud(
-        nextcloud_url=NEXTCLOUD_URL,
-        nc_auth_user=NEXTCLOUD_USER,
-        nc_auth_pass=NEXTCLOUD_PASSWORD,
+        nextcloud_url=settings.nextcloud_url,
+        nc_auth_user=settings.nextcloud_user,
+        nc_auth_pass=settings.nextcloud_password,
     )
     return nc
 
@@ -54,12 +46,11 @@ def print_file_info(files: list) -> None:
 def main():
     """Main function to demonstrate Nextcloud file listing."""
     try:
-        # Connect to Nextcloud
-        print(f"Connecting to {NEXTCLOUD_URL}...")
+        print(f"Connecting to {settings.nextcloud_url}...")
         nc = connect_to_nextcloud()
         print("✓ Connected successfully!")
         
-        folder_to_list = "/Shared/Favorite/"  # Change this to any folder path you want
+        folder_to_list = settings.nextcloud_folder
         print(f"\nListing files in: {folder_to_list}")
         
         files = list_files_in_folder(nc, folder_to_list)
