@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, jsonify
+from flask import Flask, render_template, request, redirect, jsonify, Response
 from app.config.config import settings
 import logging
 from app.modules.weather import (
@@ -10,6 +10,7 @@ from app.modules.weather import (
 from app.modules.calendar import return_calendar_events
 from app.modules.crypto import get_current_crypto_price, get_historical_crypto_price, get_coin_config
 from app.modules.daily_word import return_daily_word
+from app.modules.nextcloud import get_random_image
 
 app = Flask(
     __name__,
@@ -85,6 +86,18 @@ def api_crypto_config():
 @app.route("/daily-word")
 def daily_word():
     return return_daily_word()
+
+
+#BACKGROUND -----------------------------------------------------------------------
+@app.route("/api/background")
+def api_background():
+    """Return a random background image from Nextcloud."""
+    result = get_random_image()
+    if result:
+        image_bytes, content_type = result
+        return Response(image_bytes, mimetype=content_type)
+    # Fallback to 404 if no image found
+    return Response("No images found", status=404)
 
 
 if __name__ == "__main__":
