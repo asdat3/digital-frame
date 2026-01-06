@@ -95,8 +95,11 @@ def api_background():
     result = get_random_image()
     if result:
         image_bytes, content_type = result
-        return Response(image_bytes, mimetype=content_type)
-    # Fallback to 404 if no image found
+        response = Response(image_bytes, mimetype=content_type)
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '0'
+        return response
     return Response("No images found", status=404)
 
 
