@@ -34,15 +34,41 @@ function isAllDayEvent(beginIsoString, endIsoString) {
     if (endHours !== 0 && endHours !== 1) return false;
     if (endMinutes !== 0) return false;
     
-    // Check if start and end times are the same (or very close, within 1 hour)
-    const timeDiff = Math.abs(endDate - beginDate);
-    const hoursDiff = timeDiff / (1000 * 60 * 60);
-    
-    // All-day events are either same time or exactly 24 hours apart
-    return hoursDiff < 1 || Math.abs(hoursDiff - 24) < 1;
+    // Both start and end are at midnight - this is an all-day event
+    // (could be single day or multi-day)
+    return true;
   } catch (e) {
     return false;
   }
+}
+
+function isMultiDayEvent(beginIsoString, endIsoString) {
+  if (!beginIsoString || !endIsoString) return false;
+  try {
+    const beginDate = new Date(beginIsoString);
+    const endDate = new Date(endIsoString);
+    
+    // Compare dates (ignoring time)
+    const beginDay = new Date(beginDate.getFullYear(), beginDate.getMonth(), beginDate.getDate());
+    const endDay = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
+    
+    // For all-day events, the end date is typically the day after the last day
+    // So a 1-day all-day event would be Jan 5 00:00 - Jan 6 00:00
+    // A multi-day event (Jan 5-7) would be Jan 5 00:00 - Jan 8 00:00
+    const daysDiff = (endDay - beginDay) / (1000 * 60 * 60 * 24);
+    
+    // More than 1 day difference means it spans multiple days
+    return daysDiff > 1;
+  } catch (e) {
+    return false;
+  }
+}
+
+function formatDateShort(date) {
+  return date.toLocaleDateString(undefined, {
+    month: 'short',
+    day: 'numeric',
+  });
 }
 
 function formatEventTimeRange(beginIsoString, endIsoString) {
@@ -50,6 +76,15 @@ function formatEventTimeRange(beginIsoString, endIsoString) {
   
   // Check if it's an all-day event
   if (isAllDayEvent(beginIsoString, endIsoString)) {
+    // Check if it spans multiple days
+    if (isMultiDayEvent(beginIsoString, endIsoString)) {
+      const beginDate = new Date(beginIsoString);
+      const endDate = new Date(endIsoString);
+      // End date for all-day events is typically midnight of the day after
+      // So we subtract 1 day to get the actual last day of the event
+      endDate.setDate(endDate.getDate() - 1);
+      return `${formatDateShort(beginDate)} - ${formatDateShort(endDate)}`;
+    }
     return 'All Day';
   }
   
@@ -205,18 +240,26 @@ function renderCalendar(events) {
     // Show event slot
     slot.classList.remove('calendar-item-empty');
 
+    const isAllDay = isAllDayEvent(ev.begin, ev.end);
+    const isMultiDay = isMultiDayEvent(ev.begin, ev.end);
     const timeRange = formatEventTimeRange(ev.begin, ev.end);
     const dayLabel = getEventDayLabel(ev.begin);
+    
     if (dateEl) {
-      // Combine day label with time range
       let dateText = '';
-      if (dayLabel && timeRange) {
+      
+      if (isAllDay && isMultiDay) {
+        // For multi-day all-day events, just show the date range
+        dateText = timeRange;
+      } else if (dayLabel && timeRange) {
+        // Combine day label with time range
         dateText = `${dayLabel} · ${timeRange}`;
       } else if (dayLabel) {
         dateText = dayLabel;
       } else if (timeRange) {
         dateText = timeRange;
       }
+      
       dateEl.textContent = dateText;
       if (!timeRange && !dayLabel) {
         console.warn('Empty time range and date for event:', ev);
