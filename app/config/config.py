@@ -6,6 +6,10 @@ class Settings(BaseSettings):
     """Application settings loaded from environment variables"""
     
     auth_key: str = "empty" # for accessing this app
+    nextcloud_url: str = "empty"
+    nextcloud_user: str = "empty"
+    nextcloud_password: str = "empty"
+    nextcloud_folder: str = "empty"
 
     #API KEYS -----------------------------------------------------------
     openweather_api_key: str = "empty"
